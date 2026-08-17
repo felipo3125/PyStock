@@ -1,4 +1,14 @@
 #programa pystock
+"""
+add product
+search_product
+update_product
+delete_product
+show_statics
+"""
+
+
+
 
 import json
 
@@ -20,6 +30,25 @@ def view_products():
               print("The file was corrupted, so a new one was created")
               return []
 
+def save_products(products):
+     with open(directory, "w") as f:
+          json.dump(products, f, indent=4)
+
+def add_product(name, category, price, stock):
+    products = view_products()
+
+    new_id = products[-1]["id"] + 1
+
+    product = {
+        "id": new_id,
+        "name": name,
+        "category": category,
+        "price": price,
+        "stock": stock
+    }
+
+    products.append(product)
+    save_products(products)
 
 
 print("""========================
