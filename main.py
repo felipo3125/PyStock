@@ -6,10 +6,6 @@ update_product
 delete_product
 show_statics
 """
-
-
-
-
 import json
 
 directory = "data.json"
@@ -82,10 +78,10 @@ def update_product():
                          i["category"] = input("new category: ")
                          print("Category successfully changed")
                     elif option == 3:
-                         i["price"] = input("new price: ")
+                         i["price"] = float(input("new price: "))
                          print("Price successully changed")
                     elif option == 4:
-                         i["stock"] = input("new stock: ")
+                         i["stock"] = int(input("new stock: "))
                          print("Stock successfully changed")
                     elif option == 5:
                          print("see ya")
