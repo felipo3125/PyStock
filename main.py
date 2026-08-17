@@ -50,6 +50,9 @@ def add_product(name, category, price, stock):
     products.append(product)
     save_products(products)
 
+def search_product(name):
+     product = view_products()
+     product["name"] = name
 
 print("""========================
         PyStock
