@@ -30,7 +30,7 @@ def save_products(products):
 def add_product(name, category, price, stock):
     products = view_products()
 
-    new_id = products[-1]["id"] + 1
+    new_id = products[-1]["id"] + 1 if products else 1
 
     product = {
         "id": new_id,
@@ -115,6 +115,10 @@ def delete_product():
                          print("invalid option, please try again")
      if not found:
           print("product not found")
+
+
+def show_statics():
+     pass
 
 print("""========================
         PyStock
