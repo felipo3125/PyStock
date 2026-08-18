@@ -1,8 +1,5 @@
 #programa pystock
 """
-add product
-search_product
-update_product
 delete_product
 show_statics
 """
@@ -92,7 +89,32 @@ def update_product():
      if not found:
           print("product not found")
 
-          
+def delete_product():
+     products = view_products()
+
+     found = False
+
+     id = int(input("please enter ID number: "))
+     for i in products:
+          if id == i["id"]:
+               found = True
+               print("ID found")
+               print(i)
+               print("Is this the product you were looking for?")
+               while True:
+                    option = input("Y/N: ").lower()
+                    if option == "y":
+                         products.remove(i)
+                         print("Product removed")
+                         save_products(products)
+                         break
+                    elif option == "n":
+                         print("Operation cancelled")
+                         break
+                    else:
+                         print("invalid option, please try again")
+     if not found:
+          print("product not found")
 
 print("""========================
         PyStock
