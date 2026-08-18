@@ -30,7 +30,7 @@ def save_products(products):
 def add_product(name, category, price, stock):
     products = view_products()
 
-    new_id = products[-1]["id"] + 1
+    new_id = products[-1]["id"] + 1 if products else 1
 
     product = {
         "id": new_id,
@@ -115,6 +115,36 @@ def delete_product():
                          print("invalid option, please try again")
      if not found:
           print("product not found")
+
+def show_statics():
+     products = view_products()
+
+     if not products:
+          print("there are no products in inventory")
+          return
+
+     total_products = len(products)
+
+     total_value = sum(p["price"] * p["stock"] for p in products)
+
+     most_expensive_product = max(products, key=lambda p: p["price"])
+
+     more_stock = max(products, key=lambda p: p["stock"])
+
+     less_stock = min(products, key=lambda p: p["stock"])
+
+     categories = set(p["category"] for p in products)
+
+     average_stock = sum(p["stock"] for p in products) / total_products
+
+     print("\n===INVENTORY STATICS===")
+     print(f"Total products:            {total_products}")
+     print(f"total_value:               {total_value:.2f}")
+     print(f"categories:                {', '.join(categories)}")
+     print(f"average_stock:             {average_stock:.1f} units")
+     print(f"most_expensive_product:    {most_expensive_product['name']} (${most_expensive_product['price']})")
+     print(f"more_stock:                {more_stock['name']} ({more_stock['stock']} units)")
+     print(f"less_stock:                {less_stock['name']} ({less_stock['stock']} units)")
 
 print("""========================
         PyStock
